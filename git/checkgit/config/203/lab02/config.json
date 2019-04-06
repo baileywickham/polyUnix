@@ -1,0 +1,28 @@
+{
+  "due": "2019-01-17 01:00",
+  "parts" : [
+    {
+      "dir": "part1",
+      "run_java": "GraderInternalVerify",
+      "classpath" : ".:testy.jar",
+      "libs" : [ "testy.jar" ],
+      "notes" : []
+    },
+    {
+      "dir": "part2",
+      "run_java": "GraderInternalVerify2",
+      "classpath" : ".:testy.jar",
+      "libs" : [ "testy.jar" ],
+      "notes" : []
+    },
+    {
+      "dir": "part3",
+      "checkUML": {
+        "file" : "point.graphml",
+        "classes": [ "Point" ]
+      },
+      "notes" : []
+    }
+
+    ]
+}

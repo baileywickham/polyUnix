@@ -1,0 +1,10 @@
+{
+  "git_prefix" : "assignment-6-",
+  "parts" : [
+    {
+      "dir": ".",
+      "run_java": "GraderInternalVerifySignatures",
+      "classpath" : "hamcrest-core-1.3.jar:junit-4.12.jar:processing-core.jar:."
+    }
+    ]
+}

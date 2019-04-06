@@ -1,0 +1,10 @@
+{
+  "git_prefix" : "lab-7-",
+  "parts" : [
+    {
+      "dir": ".",
+      "run_java": "GraderInternalVerifySignatures",
+      "classpath" : "processing-core.jar:."
+    }
+    ]
+}

@@ -1,0 +1,19 @@
+{
+  "due": "2019-01-18 01:00",
+  "parts" : [
+    {
+      "dir" : ".",
+      "checkFiles" : [
+        "doc/design.svg",
+        "src/Main.java",
+        "src/superkind/SuperKindGame.java"
+      ]
+    },
+    {
+      "dir" : ".",
+      "run_test" : "GraderInternalVerify",
+      "classpath" : ".:testy.jar:spritely.jar",
+      "libs" : [ "testy.jar", "spritely.jar", "images" ]
+    }
+  ]
+}

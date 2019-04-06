@@ -1,0 +1,14 @@
+{
+  "git_prefix" : "lab-9-",
+  "parts" : [
+    {
+      "dir": ".",
+      "run_java": "GraderInternalVerify",
+      "classpath" : ".",
+      "notes" : [ "If you got a compilation error, please make sure that MakeImage.points",
+                  "is protected, not private.  It was private in a very early version",
+                  "of the given code."
+                ]
+    }
+    ]
+}

@@ -1,0 +1,10 @@
+{
+  "git_prefix" : "lab-8-",
+  "parts" : [
+    {
+      "dir": ".",
+      "run_java": "GraderInternalVerify",
+      "classpath" : "."
+    }
+    ]
+}

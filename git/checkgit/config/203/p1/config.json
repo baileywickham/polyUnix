@@ -1,0 +1,37 @@
+{
+  "due": "2019-01-21 01:00",
+  "parts" : [
+    {
+      "dir" : ".",
+      "checkFiles" : [
+        "doc/classes.graphml",
+        "src/Action.java",
+        "src/ActionKind.java",
+        "src/Entity.java",
+        "src/EntityKind.java",
+        "src/Event.java",
+        "src/EventSchedule.java",
+        "src/Main.java",
+        "src/Point.java",
+        "src/TestCases.java",
+        "src/VirtualWorld.java",
+        "src/WorldModel.java"
+      ]
+    },
+    {
+      "dir" : ".",
+      "run_test" : "GraderInternalVerify",
+      "classpath" : ".:testy.jar:spritely.jar",
+      "libs" : [ "testy.jar", "spritely.jar", "images" ]
+    },
+    {
+      "dir" : ".",
+      "checkUML" : {
+        "file" : "doc/classes.graphml",
+        "classes" : [ "Main", "TestCases", "Point", "EventSchedule", "Action",
+          "ActionKind", "Event", "Entity", "EntityKind",
+          "VirtualWorld", "WorldModel" ]
+      }
+    }
+  ]
+}

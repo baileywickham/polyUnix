@@ -1,0 +1,9 @@
+{
+  "due": "2020-01-01 01:00",
+  "parts" : [
+    {
+      "dir": ".",
+      "checkFiles": [ "email.txt", "name.txt" ]
+    }
+    ]
+}

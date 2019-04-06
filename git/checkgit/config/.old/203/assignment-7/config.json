@@ -1,0 +1,10 @@
+{
+  "git_prefix" : "assignment-7-",
+  "parts" : [
+    {
+      "dir": ".",
+      "run_java_application": "GraderInternalVerifySignatures",
+      "classpath" : "GraderInternal-processing-core.jar:."
+    }
+    ]
+}

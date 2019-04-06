@@ -1,0 +1,19 @@
+{
+  "due": "2019-01-25 01:00",
+  "parts" : [
+    {
+      "dir": "part1",
+      "run_java": "GraderInternalVerify",
+      "classpath" : "./testy.jar:.",
+      "libs" : [ "testy.jar" ],
+      "notes" : []
+    },
+    {
+      "dir": "part2",
+      "run_java": "GraderInternalVerify",
+      "classpath" : "./testy.jar:.",
+      "libs" : [ "testy.jar" ],
+      "notes" : []
+    }
+    ]
+}

@@ -1,0 +1,147 @@
+#!/bin/csh -f 
+
+if ( `hostname` == "angora.home" || `hostname` == "lagniappe.csc.calpoly.edu" ) then
+  set lib=/home/pnico/CalPoly/Class/cpe357/now/Asgn/Handin/lib/asgn1
+  set logprog=echo 
+  set longlines=/home/pnico/bin/longlines.pl
+else
+  set lib=/home/pn-cs357/lib/asgn1/
+  set logprog=/home/pn-cs357/bin/logit.asgn1
+  set longlines=/home/pn-cs357/bin/longlines.pl
+endif
+
+set testdir=$lib/Test/Inputs
+set asgn=Asgn1
+set exitstatus = 0
+onintr bail
+
+echo "--------------------------------------------------"
+echo "Looking for detab.c (the expected source filename)."
+echo "--------------------------------------------------"
+
+if ( -f detab.c ) then
+  set src = detab.c
+else
+  echo ""
+  echo "***** detab.c not found. *****"
+  echo ""
+  set nonomatch
+  if ( *.c != '*.c' ) then
+    set src = ( *.c )
+    echo "Found $src.  Trying that instead."
+    echo ""
+  else
+    echo "No C source files found.  Remember, C source files"
+    echo "should have a .c extension (not .C or .cc which would"
+    echo "indicate C++."
+    echo ""
+    echo "If your file does have a .c extension, are you in the"
+    echo "right directory?"
+    echo ""
+    set exitstatus = -1
+  endif
+endif
+
+if ( $exitstatus == 0 ) then
+  echo ""
+  echo "--------------------------------"
+  echo "Checking for long lines (no program should have any lines > 80 chars)"
+  echo "--------------------------------"
+  echo ""
+  if ( ! { $longlines $src } ) then
+     set exitstatus=-3
+  else
+     echo "Line length ok."
+  endif
+  echo ""
+endif
+
+if ( $exitstatus == 0 ) then
+  echo ""
+  echo ""
+  echo "--------------------------------"
+  echo "Building the application (detab)"
+  echo "--------------------------------"
+  echo ""
+  echo ""
+
+  set cmd = ( gcc -ansi -pedantic -Wall -I. -o detab $src )
+  echo "$cmd" 
+  if ( ! { $cmd  } ) then
+    echo ""
+    echo "Unable to compile detab."
+    set exitstatus = -4
+  endif
+endif
+
+set which = 0
+
+if ( $exitstatus == 0 ) then
+  echo ""
+  echo ""
+  echo "--------------------------------"
+  echo "Running the application "
+  echo "--------------------------------"
+  echo ""
+  echo ""
+
+
+  echo ""
+  echo "--------------------------------------------------------"
+  echo "Test Results:"
+  echo "   These are the results of trying your detab against"   
+  echo "several input files with different characteristics "     
+  echo "described by the filename.  The output of your program"
+  echo "is compared to a reference output using diff(1).  If they"
+  echo "differ, the test case is a failure."
+  echo ""
+  echo "  These test cases are by no means exhaustive."
+  echo ""
+  echo "  The testfiles are located in $testdir/."
+  echo ""
+  echo ""
+
+  set expdir=$testdir:h/Outputs
+
+  set this = 1
+
+  foreach input ( $testdir/* ) 
+     echo -n "        "$input:t"..."               
+     set exp=$expdir/$input:t.expected
+     if ( ! -f $exp ) then
+	set exitstatus=-6
+	break
+     endif
+     ./detab < $input > detab.output$$ ; 
+     if ( { ( diff detab.output$$ $exp > /dev/null ) } ) then 
+         echo "ok."                                
+     else                                                  
+         echo "FAILURE."                           
+         @ exitstatus++;
+	 @ which += $this
+     endif
+     @ this *= 2
+     rm -f detab.output$$;                     
+  end
+
+  echo ""
+  echo "--------------------------------------------------------"
+  echo ""
+endif
+
+if ( ! $exitstatus ) then
+  echo "Passed all tests."
+else
+  echo "FAILED."
+endif
+
+goto done
+
+bail:
+  echo "Interrupted."
+  set exitstatus=-5
+
+done:
+
+$logprog  $exitstatus $which
+exit $exitstatus 

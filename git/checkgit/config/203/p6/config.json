@@ -1,0 +1,45 @@
+{
+  "due": "2019-03-16 01:00",
+  "parts" : [
+    {
+      "dir" : ".",
+      "checkFiles" : [
+	"doc/classes.graphml",
+	"doc/WORLD_EVENT.txt",
+	"src/Action.java",
+	"src/Blacksmith.java",
+	"src/Entity.java",
+	"src/Event.java",
+	"src/EventSchedule.java",
+	"src/Main.java",
+	"src/MinerFull.java",
+	"src/MinerNotFull.java",
+	"src/Obstacle.java",
+	"src/Ore.java",
+	"src/OreBlob.java",
+	"src/Point.java",
+	"src/Quake.java",
+	"src/TestCases.java",
+	"src/Vein.java",
+	"src/VirtualWorld.java",
+	"src/WorldModel.java"
+      ]
+    },
+    {
+      "dir" : ".",
+      "run_test" : "GraderInternalVerify",
+      "classpath" : ".:testy.jar:spritely.jar",
+      "libs" : [ "testy.jar", "spritely.jar", "images" ]
+    },
+    {
+      "dir" : ".",
+      "checkUML" : {
+        "file" : "doc/classes.graphml",
+        "classes" : [ "Main", "TestCases", "Point", "EventSchedule", "Action",
+                      "Event", "Entity", "Blacksmith", "MinerFull", "MinerNotFull",
+		      "Obstacle", "Ore", "OreBlob", "Quake", "Vein",
+		      "VirtualWorld", "WorldModel" ]
+      }
+    }
+    ]
+}
